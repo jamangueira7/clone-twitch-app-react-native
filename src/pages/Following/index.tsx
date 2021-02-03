@@ -1,5 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
+import Header from '../../components/Header';
 import Header from '../../components/Header';
 
 import { Wrapper, Container, Main } from './styles';
@@ -11,7 +12,7 @@ interface Item {
 }
 
 const Following: React.FC = () => {
-    React.useMemo(() => {
+    const { data, indices } = React.useMemo(() => {
         const items: Item[] = [
             {
                 key: 'PAGE_HEADING',
@@ -53,14 +54,34 @@ const Following: React.FC = () => {
                 key: 'C4',
                 render: () => <View />,
             }
-        ]
+        ];
+
+        //Array que contem apenas indices dos elementos que são titulos
+        const indices: number[] = [];
+
+        items.forEach((item, index) => item.isTitle && indices.push(index));
+
+        return {
+            data: items,
+            indices,
+        }
     }, []);
     return (
 
         <Wrapper>
             <Container>
                 <Header />
-                <Main />
+                <Main>
+                    <FlatList<Item>
+                        data={data}
+                        renderItem={ ({ item }) => item.render() }
+                        keyExtractor={ item => item.key }
+                        stickyHeaderIndices={ indices }
+                        //efeito refresh
+                        onRefresh={() => {}}
+                        refreshing={false}
+                    />
+                </Main>
             </Container>
         </Wrapper>
     );
