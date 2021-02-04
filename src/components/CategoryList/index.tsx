@@ -1,18 +1,39 @@
 import React from 'react';
 import {
-    Container,
+    List,
+    CategoryContainer,
+    CategoryImage,
+    CategoryName,
+    CategoryStatus,
+    RedCircle,
+    Info,
 } from './styles';
 
-import streamThumbail from '../../images/stream_thumbnail.jpg';
+import data from './data';
 
+interface ItemProps {
+    item: typeof data[0];
+}
 
-const StreamList: React.FC = ({ children }) => {
+const CategoryList: React.FC = ({ children }) => {
 
+    const CategoryItem: React.FC<ItemProps> = ({ item }) => (
+        <CategoryContainer>
+            <CategoryImage source={item.source} />
+            <CategoryName numberOfLines={1}>{item.name}</CategoryName>
+            <CategoryStatus>
+                <RedCircle />
+                <Info>51.9K</Info>
+            </CategoryStatus>
+        </CategoryContainer>
+    );
     return (
-        <Container>
-
-        </Container>
+        <List>
+            {data.map((item) => (
+                <CategoryItem key={item.name} item={item} />
+            ))}
+        </List>
     );
 };
 
-export default StreamList;
+export default CategoryList;

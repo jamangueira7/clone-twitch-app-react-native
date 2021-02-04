@@ -1,39 +1,62 @@
 import React from 'react';
 import {
     List,
-    CategoryContainer,
-    CategoryImage,
-    CategoryName,
-    CategoryStatus,
-    RedCircle,
-    Info,
+    StreamContainer,
+    StreamThumbnail,
+    StreamColumn,
+    StreamRow,
+    StreamHeader,
+    StreamDescription,
+    StreamCategory,
+    StreamAvatar,
+    StreamUsername,
+    TagRow,
+    TagView,
+    TagText,
 } from './styles';
 
-import data from './data';
+import streamThumbail from '../../images/stream_thumbnail.jpg';
 
-interface ItemProps {
-    item: typeof data[0];
-}
 
-const CategoryList: React.FC = ({ children }) => {
+const StreamList: React.FC = ({ children }) => {
 
-    const CategoryItem: React.FC<ItemProps> = ({ item }) => (
-        <CategoryContainer>
-            <CategoryImage source={item.source} />
-            <CategoryName numberOfLines={1}>{item.name}</CategoryName>
-            <CategoryStatus>
-                <RedCircle />
-                <Info>51.9K</Info>
-            </CategoryStatus>
-        </CategoryContainer>
+    const StreamItem: React.FC = () => (
+        <StreamContainer>
+            <StreamThumbnail source={streamThumbail} />
+            <StreamColumn>
+                <StreamRow>
+                    <StreamHeader>
+                        <StreamAvatar />
+                        <StreamUsername numberOfLines={1}>rodz_oficail</StreamUsername>
+                    </StreamHeader>
+                    <StreamDescription numberOfLines={1}>
+                        Font-end com Next.js, Chakra UI e GraphQL
+                    </StreamDescription>
+                    <StreamCategory numberOfLines={1}>
+                        Science & Technology
+                    </StreamCategory>
+                </StreamRow>
+
+                <TagRow>
+                    <TagView>
+                        <TagText>Portuguese</TagText>
+                    </TagView>
+                    <TagView>
+                        <TagText>Web Development</TagText>
+                    </TagView>
+                </TagRow>
+            </StreamColumn>
+        </StreamContainer>
     );
+
     return (
         <List>
-            {data.map((item) => (
-                <CategoryItem key={item.name} item={item} />
-            ))}
+            <StreamItem />
+            <StreamItem />
+            <StreamItem />
+            <StreamItem />
         </List>
     );
 };
 
-export default CategoryList;
+export default StreamList;
