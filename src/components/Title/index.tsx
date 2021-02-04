@@ -4,7 +4,7 @@ import { MaterialIcons, MaterialCommunityIcons, Feather } from '@expo/vector-ico
 import colors from '../../styles/colors';
 import { Container, HeadingText } from './styles';
 
-const Heading: React.FC = ({ children }) => {
+const Title: React.FC = ({ children }) => {
     return (
         <Container>
             <HeadingText>{children}</HeadingText>
@@ -12,4 +12,4 @@ const Heading: React.FC = ({ children }) => {
     );
 };
 
-export default Heading;
+export default Title;
