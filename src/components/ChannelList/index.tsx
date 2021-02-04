@@ -11,8 +11,6 @@ import {
     WhiteCircle,
 } from './styles';
 
-import streamThumbail from '../../images/stream_thumbnail.jpg';
-
 
 const ChannelList: React.FC = ({ children }) => {
 
